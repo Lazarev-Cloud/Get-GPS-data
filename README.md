@@ -14,8 +14,11 @@ The **Get GPS Data** project provides a Python-based solution for interfacing wi
 - **Real-Time GPS Data Retrieval:** Fetch real-time data from the u-blox NEO-6M GPS receiver.
 - **Serial Communication:** Communicate effectively with the GPS module via a USB-to-serial adapter.
 - **Data Parsing:** Extract latitude, longitude, altitude, and other geolocation data.
+- **Position Filtering:** Apply Kalman filter or moving average smoothing to improve position accuracy.
+- **Satellite Monitoring:** Visualize satellite information and signal quality.
+- **Data Logging:** Record GPS data to CSV for analysis and tracking.
 - **Error Handling:** Robust error handling for serial communication interruptions.
-- **Extensible:** Ready to be integrated into larger projects or customized for specific use cases.
+- **Extensible:** Modular architecture ready to be integrated into larger projects.
 
 ---
 
@@ -53,16 +56,41 @@ Ensure you have the following installed on your system:
 
 ## Usage
 
-To start retrieving GPS data, run the provided Python script:
+To start the GPS Data Viewer application, run:
 
 ```sh
 python main.py
 ```
 
+The application provides an intuitive GUI with the following features:
+- Connection settings for serial port and baud rate
+- Real-time display of GPS data (position, altitude, speed, etc.)
+- Position smoothing options (None, Moving Average, Kalman Filter)
+- Satellite information view with signal strength visualization
+- Raw NMEA sentence display
+- Data logging to CSV files
 
-### Customization
+---
 
-You can modify the `main.py` script to suit your specific requirements, such as logging data to a file or sending it to a remote server.
+## Project Structure
+
+The project uses a modular architecture for better maintainability:
+
+```
+get-gps-data/
+├── main.py                  # Entry point
+├── config/                  # Configuration settings
+├── core/                    # Core GPS functionality
+│   ├── gps_reader.py        # GPS data acquisition
+│   ├── nmea_parser.py       # NMEA parsing
+│   └── filters/             # Position filtering algorithms
+├── utils/                   # Utility functions
+├── logging/                 # Data logging functionality
+└── ui/                      # User interface components
+    ├── app.py               # Main application
+    ├── panels/              # UI panels
+    └── windows/             # Additional windows
+```
 
 ---
 
@@ -72,7 +100,7 @@ You can modify the `main.py` script to suit your specific requirements, such as 
 
 1. **Serial Port Not Found:**
    - Ensure your GPS module is properly connected to the USB port.
-   - Check the serial port name (e.g., `/dev/ttyUSB0` on Linux or `COM3` on Windows) and update the script if necessary.
+   - Check the serial port name (e.g., `/dev/ttyUSB0` on Linux or `COM3` on Windows) and update if necessary.
 
 2. **No GPS Data Received:**
    - Verify that the GPS module has a clear view of the sky to acquire satellite signals.
@@ -95,13 +123,6 @@ Contributions are welcome! If you'd like to improve this project, please follow 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
-
----
-
-## Acknowledgments
-
-- **u-blox NEO-6M GPS Module:** For providing GPS data.
-- **Python Community:** For the amazing tools and libraries.
 
 ---
 

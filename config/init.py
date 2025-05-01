@@ -1,0 +1,1 @@
+"""Configuration package for GPS Data Viewer."""

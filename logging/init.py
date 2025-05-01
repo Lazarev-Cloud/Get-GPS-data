@@ -1,0 +1,1 @@
+"""Logging package for GPS Data Viewer."""
